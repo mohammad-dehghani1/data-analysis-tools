@@ -6,7 +6,7 @@ Created on Wed Feb  2 17:30:10 2022
 """
 
 ########### EDA ###########
-
+import pandas as pd
 
 #pandas profiling
 """
