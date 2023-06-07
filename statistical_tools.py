@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 
 table_name = pd.read_csv('directory.csv')
 
-
+a = 1
 
 
 ################## Estamates of location ##################
@@ -20,14 +20,11 @@ table_name = pd.read_csv('directory.csv')
 def estamates_of_location(table_name, column_name):
     mean = table_name[column_name].mean()
     median = table_name[column_name].Median()
-    print('Mean =', mean,'median =', median)
+    print (f'Mean ={mean} /n ,median ={median}')
 
-def trim_main(table_name, column_name, ):
+def trim_main(table_name, column_name, percentage):
     from scipy import state
-    state.trim_mean(table_name['column_name'], )
-# Trim mean
-from scipy import state
-state.trim_mean(table_name['column_name'], 0.1)
+    return (state.trim_mean(table_name['column_name'], percentage))
 
 # Weight median
 np.average(table_name['column_name'], weights= table_name['column_name'])
