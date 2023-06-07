@@ -20,49 +20,48 @@ a = 1
 def estamates_of_location(table_name, column_name):
     mean = table_name[column_name].mean()
     median = table_name[column_name].Median()
-    print (f'Mean ={mean} /n ,median ={median}')
+    print (f'Mean ={mean} ,median ={median} /n')
 
 def trim_main(table_name, column_name, percentage):
     from scipy import state
     return (state.trim_mean(table_name['column_name'], percentage))
 
 # Weight median
-np.average(table_name['column_name'], weights= table_name['column_name'])
+#np.average(table_name['column_name'], weights= table_name['column_name'])
 # or
-wquantiles.median(table_name['column_name'], weights= table_name['column_name'])
+#wquantiles.median(table_name['column_name'], weights= table_name['column_name'])
 
 
 
 ################## Estamets of variability ##################
 
-# Standard deviaion
-table_name['column_name'].std()
-
-# IQR (InterQuantile range)
-table_name['column_name'].quantile(0.75) - table_name['column_name'].quantile(0.25)
-
-# MAD (Mean absolute deviation)
-robust.scale.mad(table_name['column_name'])
+def estamates_of_location (table_name, column_name):
+    from statemodels import robust
+    std_dev = table_name[column_name].std()
+    interquantile = table_name[column_name].quantile(0.75) - table_name[column_name].quantile(0.25) 
+    mean_absolute_dev = robust.scale.mad(table_name[column_name])
+    print( f'std_dev = {std_dev}, interquantile = {interquantile}, mean_absolute_dev= {mean_absolute_dev}')
 
 
 
 ################## Exploring the data distribution ##################
-
-# boxplot
-ax = (table_name['column_name']).plot.box()
-ax.set_ylabel('y_label_name')
-
-# Frequency table
-fx = pd.cut(table_name['column_name'], number_of_bins)
-fx.value_counts()
-
-# Histogram plot
-ax = table_name['column_name'].plot.hist()
-
-# Density plot
-table_name['column_name'].plot.density()
-
-
+def ploting_data(table_name, column_name, plot_kind):
+    '''
+    Choose one of this plot: 
+    boxplot
+    frequency 
+    histogram
+    density
+    '''
+    if plot_kind == 'boxplot':
+        ax = (table_name[column_name]).plot.box()
+    if plot_kind == 'frequency':
+        bins = input("number of bins")
+        fx = pd.cun(table_name[column_name].plot.box(), bins)
+    if plot_kind == 'histogram':
+        ax = table_name[column_name].plot.hist()
+    if plot_kind == 'histogram':
+        ax = table_name[column_name].plot.density()
 
 ################## Explorinf binary and categorical data ##################
 
