@@ -17,12 +17,14 @@ table_name = pd.read_csv('directory.csv')
 
 ################## Estamates of location ##################
 
-# Mean
-table_name['column_name'].mean()
+def estamates_of_location(table_name, column_name):
+    mean = table_name[column_name].mean()
+    median = table_name[column_name].Median()
+    print('Mean =', mean,'median =', median)
 
-# Median
-table_name['column_name'].Median()
-
+def trim_main(table_name, column_name, ):
+    from scipy import state
+    state.trim_mean(table_name['column_name'], )
 # Trim mean
 from scipy import state
 state.trim_mean(table_name['column_name'], 0.1)
