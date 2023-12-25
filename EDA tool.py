@@ -5,30 +5,23 @@ Created on Wed Feb  2 17:30:10 2022
 @author: Rayanet
 """
 
-########### EDA ###########
 import pandas as pd
-
-#pandas profiling
-"""
-from pandas_profiling import ProfileReport
-profile = ProfileReport(*data* , title="**", explorative=True)
-profile.to_file("*name*.html")
-"""
-
-#sweetviz
-"""
+import seaborn as sns
 import sweetviz as sv
-my_report = sv.analyze(*data file name*, traget_feat= '*target feacher name')
-my_report.to_file("*name*.html")
 
-Compare 2 dataset wits sweetviz
-"""
+# Compute the correlation matrix
+df = pd.read_csv("dataset_for_stair.csv")
+df = df.iloc[:,:-1]
 
+def analyze(report_kind):
+    '''
+    kinds: corr_matrix, whole_analyze
 
-
-#pandas GUI
-from pandas_profiling import ProfileReport
-import pandas as pd
-data = pd.read_excel("Master_data.xlsx")
-profile = ProfileReport(data , title="corona", explorative=True)
-profile.to_file("corona.html")
+    '''
+    report_kind = report_kind
+    if report_kind == 'corr_matrix':
+        corr_matrix = df.corr()
+        sns.heatmap(corr_matrix, annot=True, cmap='coolwarm')
+    if report_kind == 'whole_analyze':
+        my_report = sv.analyze(df, target_feat= 'amnt')
+        my_report.show_html()
